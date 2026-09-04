@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate") %>
+
+<div class="container mt-4">
+  <div class="col-6 offset-3">
+
+    <!-- Listing Card -->
+    <h3 class="mb-3"><%= listing.title %></h3>
+    <div class="card listing-card">
+      <img src="<%= listing.image.url %>" class="card-img-top show-img" alt="listing_image">
+      <div class="card-body">
+        <p><%= listing.description %></p>
+        <p>₹<%= listing.price.toLocaleString("en-IN") %></p>
+        <p><%= listing.location %><br><%= listing.country %></p>
+      </div>
+    </div>
+
+    <!-- Review Form -->
+    <div class="mt-4">
+      <hr>
+      <h4>Leave a Review</h4>
+      <form action="/reviews" method="POST">
+        <input type="hidden" name="review[listing]" value="<%= listing._id %>">
+
+        <div class="mb-3">
+          <label>Rating</label>
+          <input type="range" min="1" max="5" name="review[rating]" class="form-range">
+        </div>
+
+        <div class="mb-3">
+          <label>Comment</label>
+          <textarea name="review[comment]" class="form-control" required></textarea>
+        </div>
+
+        <button class="btn btn-success">Submit</button>
+      </form>
+
+      <hr>
+      <p><b>All Reviews</b></p>
+
+      <div class="reviews-section">
+        <% for (let review of listing.reviews) { %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <p><%= review.comment %></p>
+              <p>Rating: <%= review.rating %></p>
+            </div>
+            <form method="POST" action="/reviews/<%= review._id %>?_method=DELETE">
+              <button class="btn btn-sm btn-dark">Delete</button>
+            </form>
+          </div>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+</div>
