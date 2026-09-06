@@ -25,17 +25,23 @@ const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/Wanderlust
 const SECRET = process.env.SECRET || "wanderlustSecretKey2026";
 const PORT = process.env.PORT || 8080;
 
-main()
-  .then(() => {
+let isConnected = false;
+async function connectDB() {
+  if (isConnected && mongoose.connection.readyState === 1) {
+    return;
+  }
+  try {
+    await mongoose.connect(MONGO_URL, {
+      serverSelectionTimeoutMS: 5000,
+    });
+    isConnected = true;
     console.log("Connected to DB successfully");
-  })
-  .catch((err) => {
+  } catch (err) {
     console.error("Database connection error:", err);
-  });
-
-async function main() {
-  await mongoose.connect(MONGO_URL);
+  }
 }
+
+connectDB();
 
 app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
@@ -67,7 +73,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
+  await connectDB();
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;
@@ -133,6 +140,10 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+  });
+}
+
+module.exports = app;

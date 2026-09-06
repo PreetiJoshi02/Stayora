@@ -1,7 +1,7 @@
-﻿const express = require("express");
+const express = require("express");
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync.js");
-const { isLoggedIn, validateBooking } = require("../middleware.js");
+const { isLoggedIn, validateBooking } = require("../authMiddleware.js");
 const bookingsController = require("../controllers/bookings.js");
 
 // Make reservation for a listing

@@ -1,4 +1,4 @@
-﻿# Stayora 🌍✈️
+# Stayora 🌍✈️
 
 > A modern, responsive, full-stack Airbnb-inspired property listing and booking web platform built with Node.js, Express, MongoDB, EJS, and Bootstrap 5.
 
@@ -103,7 +103,7 @@ Stayora/
 ├── init/                 # Database seeding scripts & sample data
 │   ├── data.js           # 30 curated listings with images
 │   └── index.js          # DB initialization runner
-├── middleware.js         # Auth & validation middleware functions
+├── authMiddleware.js     # Auth & validation middleware functions
 ├── schema.js             # Joi validation schemas
 ├── app.js                # Main application entry point
 ├── package.json          # Project metadata & scripts

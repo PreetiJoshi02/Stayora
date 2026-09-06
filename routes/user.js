@@ -1,8 +1,8 @@
-﻿const express = require("express");
+const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const wrapAsync = require("../utils/wrapAsync.js");
-const { saveRedirectUrl } = require("../middleware.js");
+const { saveRedirectUrl } = require("../authMiddleware.js");
 const usersController = require("../controllers/users.js");
 
 router
