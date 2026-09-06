@@ -21,23 +21,58 @@ const reviewsRouter = require("./routes/review.js");
 const usersRouter = require("./routes/user.js");
 const bookingsRouter = require("./routes/booking.js");
 
+const Listing = require("./models/listing.js");
+const initData = require("./init/data.js");
+
 const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/Wanderlust";
 const SECRET = process.env.SECRET || "wanderlustSecretKey2026";
 const PORT = process.env.PORT || 8080;
 
 let isConnected = false;
+let isSeeded = false;
+
+async function autoSeed() {
+  if (isSeeded) return;
+  try {
+    const count = await Listing.countDocuments();
+    if (count === 0) {
+      console.log("Empty DB detected. Auto-seeding initial Stayora destinations...");
+      let demoUser = await User.findOne({ username: "demouser" });
+      if (!demoUser) {
+        demoUser = new User({
+          email: "demo@stayora.com",
+          username: "demouser",
+        });
+        demoUser = await User.register(demoUser, "stayora123");
+      }
+      const updatedData = initData.data.map((obj) => ({
+        ...obj,
+        owner: demoUser._id,
+        amenities: ["Wifi", "Air conditioning", "Kitchen", "Free parking", "Dedicated workspace", "Pool"],
+      }));
+      await Listing.insertMany(updatedData);
+      console.log(`Auto-seeded ${updatedData.length} listings into database!`);
+    }
+    isSeeded = true;
+  } catch (err) {
+    console.error("Auto-seed error:", err.message);
+  }
+}
+
 async function connectDB() {
   if (isConnected && mongoose.connection.readyState === 1) {
     return;
   }
   try {
+    mongoose.set("bufferCommands", false);
     await mongoose.connect(MONGO_URL, {
       serverSelectionTimeoutMS: 5000,
     });
     isConnected = true;
     console.log("Connected to DB successfully");
+    await autoSeed();
   } catch (err) {
-    console.error("Database connection error:", err);
+    console.error("Database connection notice:", err.message);
   }
 }
 
