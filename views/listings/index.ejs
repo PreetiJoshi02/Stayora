@@ -1,27 +1,112 @@
 <% layout("/layouts/boilerplate") %>
 
- 
-    <h3>All Listings</h3>
-    <!-- <form method="GET" action="/listings/new">
-      <button>Create New Listing</button>
-    </form> -->
-    
-<div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-3">
- <% for(let listing of allListing) { %> 
-  <a href="/listings/<%=listing._id%>" class="listing-link">
-    <div class="card listing-card" >
-  <img src="<%= listing.image.url %>" class="card-img-top" alt="..."style="height:20rem";>
-  <div class="card-img-overlay"></div>
-  <div class="card-body">
-    <p class="card-text">
-    <b><%= listing.title %></b>  
-    <br>
-    <%= listing.price.toLocaleString("en-IN") %>/night
-  </p>
+<!-- Category Filters & Tax Switch -->
+<div class="filters-container-luxury d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+  <!-- Categories Scrollable Bar -->
+  <div class="filters-scroll d-flex align-items-center gap-2 flex-nowrap overflow-x-auto pb-2 pt-1 flex-grow-1">
+    <% const categories = [
+      { name: "All", icon: "fa-solid fa-border-all" },
+      { name: "Trending", icon: "fa-solid fa-fire" },
+      { name: "Beachfront", icon: "fa-solid fa-umbrella-beach" },
+      { name: "Iconic Cities", icon: "fa-solid fa-mountain-city" },
+      { name: "Mountains", icon: "fa-solid fa-mountain" },
+      { name: "Castles", icon: "fa-brands fa-fort-awesome" },
+      { name: "Amazing Pools", icon: "fa-solid fa-person-swimming" },
+      { name: "Camping", icon: "fa-solid fa-campground" },
+      { name: "Farms", icon: "fa-solid fa-cow" },
+      { name: "Arctic", icon: "fa-regular fa-snowflake" },
+      { name: "Luxury", icon: "fa-solid fa-gem" }
+    ]; %>
+
+    <% for (let cat of categories) { %>
+      <a href="/listings?category=<%= encodeURIComponent(cat.name) %>" class="filter-item-luxury text-decoration-none text-center <%= (typeof currentCategory !== 'undefined' && currentCategory === cat.name) ? 'active' : '' %>">
+        <div class="filter-icon mb-1">
+          <i class="<%= cat.icon %> fs-5"></i>
+        </div>
+        <span class="filter-label small fw-semibold"><%= cat.name %></span>
+      </a>
+    <% } %>
+  </div>
+
+  <!-- Tax Toggle Switch -->
+  <div class="tax-toggle-luxury d-flex align-items-center ms-auto flex-shrink-0">
+    <div class="d-flex align-items-center gap-3 m-0">
+      <label class="small fw-semibold text-muted mb-0 user-select-none" for="taxSwitch">Display total after taxes</label>
+      <div class="form-check form-switch m-0 p-0 d-flex align-items-center">
+        <input class="form-check-input tax-switch m-0" type="checkbox" role="switch" id="taxSwitch">
+      </div>
+    </div>
   </div>
 </div>
-  </a>
 
+<!-- Active Search / Filter Banner -->
+<% if (typeof searchQuery !== 'undefined' && searchQuery) { %>
+  <div class="alert alert-glass-info border rounded-4 d-flex justify-content-between align-items-center mb-4 py-2 px-3">
+    <span>
+      Showing curated stays for "<strong style="color: var(--accent-amber);"><%= searchQuery %></strong>"
+    </span>
+    <a href="/listings" class="btn btn-glass btn-sm rounded-pill px-3">Clear Search</a>
+  </div>
 <% } %>
-</div>
-  
+
+<!-- Listings Grid -->
+<% if (!allListing || allListing.length === 0) { %>
+  <div class="text-center py-5 my-5 glass-card rounded-4 p-5">
+    <div class="mb-3">
+      <i class="fa-solid fa-magnifying-glass-location" style="font-size: 4rem; color: var(--accent-amber); opacity: 0.85;"></i>
+    </div>
+    <h4 class="fw-bold mb-2">No secluded sanctuaries found</h4>
+    <p class="text-muted mx-auto mb-4" style="max-width: 440px;">
+      Try adjusting your search criteria or clearing active filters to browse our complete collection of retreats.
+    </p>
+    <div>
+      <a href="/listings" class="btn btn-terracotta rounded-pill px-4 py-2 fw-semibold">
+        Explore All Stays
+      </a>
+    </div>
+  </div>
+<% } else { %>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+    <% for (let listing of allListing) { %>
+      <div class="col">
+        <a href="/listings/<%= listing._id %>" class="listing-link text-decoration-none">
+          <div class="card listing-card-luxury h-100 border-0">
+            <div class="card-img-container-luxury rounded-top-4">
+              <img
+                src="<%= listing.image && listing.image.url ? listing.image.url : 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b' %>"
+                class="listing-img-luxury"
+                alt="<%= listing.title %>"
+                loading="lazy"
+              />
+              <span class="badge category-badge-luxury position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill">
+                <%= listing.category || 'Trending' %>
+              </span>
+            </div>
+
+            <div class="card-body p-3">
+              <div class="d-flex justify-content-between align-items-start mb-1">
+                <h6 class="card-title fw-bold mb-0 text-truncate" style="max-width: 78%; color: var(--text-cream-light);">
+                  <%= listing.location %>, <%= listing.country %>
+                </h6>
+                <div class="d-flex align-items-center gap-1 small" style="color: var(--accent-gold);">
+                  <i class="fa-solid fa-star small"></i>
+                  <span class="fw-semibold" style="color: var(--text-cream-light);"><%= listing.reviews && listing.reviews.length ? (4.5 + (listing.reviews.length % 5) * 0.1).toFixed(1) : 'New' %></span>
+                </div>
+              </div>
+
+              <p class="text-muted small mb-2 text-truncate">
+                <%= listing.title %>
+              </p>
+
+              <div class="price-container d-flex align-items-baseline">
+                <strong class="fs-6 price-tag">₹<%= (listing.price || 0).toLocaleString("en-IN") %></strong>
+                <span class="text-muted small ms-1"> / night</span>
+                <span class="tax-info small tax-badge ms-2 d-none">+18% GST</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    <% } %>
+  </div>
+<% } %>

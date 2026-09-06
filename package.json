@@ -1,22 +1,31 @@
 {
   "name": "wanderlust",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A full-stack Airbnb-inspired property listing and booking platform built with Node.js, Express, MongoDB, EJS, and Bootstrap.",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "seed": "node init/index.js",
+    "test": "node test_flow.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "connect-flash": "^0.1.1",
+    "dotenv": "^17.4.2",
     "ejs": "^4.0.1",
     "ejs-mate": "^4.0.0",
     "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "joi": "^18.0.2",
     "method-override": "^3.0.0",
     "mongoose": "^9.1.5",
-    "nodemon": "^3.1.11"
+    "nodemon": "^3.1.11",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^9.1.0"
   }
 }

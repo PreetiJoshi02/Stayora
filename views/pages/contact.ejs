@@ -1,0 +1,44 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-4">
+  <div class="col-12 col-md-8 offset-md-2">
+    <div class="card glass-card p-4 p-md-5 rounded-4">
+      <div class="d-flex align-items-center gap-2 mb-3">
+        <i class="fa-solid fa-headset fs-3" style="color: var(--accent-terracotta);"></i>
+        <h2 class="fw-bold mb-0">Contact Stayora Concierge</h2>
+      </div>
+      <p class="text-muted small">We are available 24/7 to assist with your bookings, itinerary planning, and inquiries.</p>
+      <hr style="border-color: var(--border-glass);">
+      
+      <div class="row g-4 mt-1">
+        <div class="col-md-5">
+          <div class="p-3 rounded-3 h-100" style="background: rgba(255,255,255,0.04); border: 1px solid var(--border-glass);">
+            <h6 class="fw-bold text-cream-light mb-3">Reach Out Directly</h6>
+            <p class="small text-cream-muted mb-2"><i class="fa-solid fa-envelope me-2" style="color: var(--accent-terracotta);"></i> concierge@stayora.com</p>
+            <p class="small text-cream-muted mb-2"><i class="fa-solid fa-phone me-2" style="color: var(--accent-amber);"></i> +91 1800-STAYORA</p>
+            <p class="small text-cream-muted mb-3"><i class="fa-solid fa-location-dot me-2" style="color: #81c784;"></i> Mumbai & Bangalore, India</p>
+            <hr style="border-color: var(--border-glass);">
+            <p class="small text-muted mb-0">Operating 24 hours a day, 7 days a week.</p>
+          </div>
+        </div>
+        
+        <div class="col-md-7">
+          <form onsubmit="event.preventDefault(); alert('Thank you! Your message has been sent to our concierge team.');">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Your Name</label>
+              <input type="text" class="form-control" placeholder="Preeti Joshi" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Email Address</label>
+              <input type="email" class="form-control" placeholder="name@example.com" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Message</label>
+              <textarea class="form-control" rows="3" placeholder="How can we assist your journey?" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-terracotta rounded-pill px-4 w-100">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

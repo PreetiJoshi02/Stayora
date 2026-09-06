@@ -1,114 +1,861 @@
-body{
-    font-family: 'Plus Jakarta Sans','sans-serif' ;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+/* ==========================================================================
+   Wanderlust - Luxury Jungle & Nature Resort Theme
+   Visual Inspiration: Tropical Sunset Villa & Eco-Resort Escape
+   ========================================================================== */
+
+:root {
+  /* Nature & Forest Color Palette */
+  --bg-dark-base: #071510;
+  --bg-forest-900: #0a1f18;
+  --bg-forest-800: #0f2b21;
+  --bg-forest-700: #16382c;
+  --bg-olive-dark: #1b2f25;
+  --bg-olive-light: #2a4738;
+
+  /* Glassmorphism Surfaces */
+  --glass-nav: rgba(10, 24, 18, 0.82);
+  --glass-card: rgba(14, 34, 26, 0.72);
+  --glass-card-hover: rgba(20, 48, 37, 0.85);
+  --glass-surface: rgba(11, 28, 21, 0.65);
+  --glass-input: rgba(8, 20, 15, 0.6);
+  --glass-modal: rgba(12, 30, 23, 0.92);
+
+  /* Earthy Warm Accents */
+  --accent-terracotta: #d97736;
+  --accent-terracotta-hover: #c26526;
+  --accent-terracotta-glow: rgba(217, 119, 54, 0.25);
+  --accent-amber: #e59f48;
+  --accent-gold: #dfb26a;
+  --accent-sage: #527d66;
+
+  /* Warm Cream & Soft Beige Typography */
+  --text-cream-light: #faf6ee;
+  --text-cream-main: #f0e8dc;
+  --text-cream-muted: #afc0b6;
+  --text-cream-dim: #7f9588;
+
+  /* Glass Borders & Radii */
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --border-glass-hover: rgba(255, 255, 255, 0.22);
+  --border-glass-accent: rgba(217, 119, 54, 0.35);
+  --radius-sm: 0.6rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.35rem;
+  --radius-xl: 2rem;
+  --radius-pill: 9999px;
+
+  /* Elevation & Shadows */
+  --shadow-glass: 0 10px 30px rgba(0, 0, 0, 0.35), 0 1px 3px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 18px 40px rgba(0, 0, 0, 0.45), 0 0 20px rgba(82, 125, 102, 0.2);
+  --shadow-glow: 0 0 25px rgba(217, 119, 54, 0.3);
+
+  --transition-smooth: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.container{
-    flex:1;
+/* ==========================================================================
+   Global Atmosphere & Base Background
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
 }
 
-.navbar{
-    height: 5rem;
-    background-color: white;
+body.nature-luxury-theme {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-cream-main);
+  background-color: var(--bg-dark-base);
+  background-image:
+    linear-gradient(180deg, 
+      rgba(7, 21, 16, 0.84) 0%, 
+      rgba(10, 27, 21, 0.88) 35%, 
+      rgba(8, 22, 17, 0.93) 70%, 
+      rgba(5, 15, 11, 0.98) 100%
+    ),
+    url('/images/tropical-bg.jpeg');
+  background-attachment: fixed;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
 }
 
-
-.fa-compass{
-    color:#fe424d;
-    font-size: 2rem;
+/* Typography Enhancements */
+h1, h2, h3, .brand-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--text-cream-light);
+  letter-spacing: -0.02em;
 }
 
-.nav-link{
-    color: #222222 !important;
+h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text-cream-light);
+  letter-spacing: -0.02em;
 }
 
-
-/* footer */
-footer{
-    margin-top: 100px;
+p, span, label, small {
+  color: var(--text-cream-main);
 }
 
-.f-info-links a{
-    text-decoration: none;
-    color: #222222;
-}
-.f-info-links a:hover{
-    text-decoration: underline;
-    
-}
-.f-info-links,.f-info-socials,.f-info-brand{
-    width: 100%;
-    display:flex;
-    align-items: centre;
-    justify-content: center;
-   
-    
+.text-muted {
+  color: var(--text-cream-muted) !important;
 }
 
-
-.f-info-socials i{
-    margin-right: 1rem;
-    font-size: 1.2rem;
-     vertical-align: middle;
-}
-.f-info{
-    text-align: center;
-    height: 8rem;
-    background-color:#ebebeb;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: space-evenly;
-}
-/* Cards */
-
-.listing-card{
-    border:none !important;
-    margin-bottom:2rem;
-}
-.card-img-top{
-    border-radius: 1rem;
-    width:100%;
-    object-fit: cover;
-}
-.card-body{
-    padding: 0 !important;
-}
-.listing-link{
-    text-decoration: none;
-}
-/* Card effect */
-.card-img-overlay:hover{
-    opacity:0.2;
-    background-color: white;
-}
-/* New Page */
-.add-btn{
-   background-color: #fe424d !important;
-    border: none !important;
-}
-/* Edit page */
-.edit-btn{
-   background-color: #fe424d !important;
-    border: none !important;
-}
-/* // show page */
-
-.show-img{
-    height: 40vh;
-   
+.text-dark {
+  color: var(--text-cream-light) !important;
 }
 
-/* show page btns */
-
-.btns{
-    display: flex;
- 
+.text-secondary {
+  color: var(--text-cream-muted) !important;
 }
 
-.show-card{
-    padding-left: 0;
-    padding-right: 0;
+a {
+  color: var(--accent-amber);
+  text-decoration: none;
+  transition: var(--transition-smooth);
 }
+
+a:hover {
+  color: var(--text-cream-light);
+}
+
+main.content-wrapper {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   Navigation Bar - Floating Luxury Glassmorphism
+   ========================================================================== */
+.luxury-navbar {
+  background: var(--glass-nav) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--border-glass);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+  padding: 0.75rem 0;
+  transition: var(--transition-smooth);
+  z-index: 1030;
+}
+
+.navbar-brand {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.brand-logo-badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid #ff5a5f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: #ff5a5f;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.navbar-brand:hover .brand-logo-badge {
+  border-color: #ff7e82;
+  color: #ff7e82;
+  transform: scale(1.04);
+}
+
+.brand-home-icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.brand-text-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 600;
+  color: #f7f3ea;
+  letter-spacing: -0.01em;
+  text-transform: lowercase;
+  line-height: 1;
+  transition: var(--transition-smooth);
+}
+
+.navbar-brand:hover .brand-text-serif {
+  color: #ffffff;
+}
+
+/* Nav Links & Controls */
+.nav-link-custom {
+  color: var(--text-cream-main) !important;
+  font-size: 0.925rem;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: var(--radius-pill);
+  transition: var(--transition-smooth);
+}
+
+.nav-link-custom:hover {
+  color: var(--text-cream-light) !important;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.host-link-custom {
+  border: 1px solid rgba(217, 119, 54, 0.35);
+  background: rgba(217, 119, 54, 0.12);
+  color: var(--text-cream-light) !important;
+}
+
+.host-link-custom:hover {
+  background: var(--accent-terracotta) !important;
+  border-color: var(--accent-terracotta) !important;
+  color: #ffffff !important;
+  box-shadow: var(--shadow-glow);
+}
+
+/* Buttons */
+.btn-terracotta {
+  background-color: var(--accent-terracotta) !important;
+  border: 1px solid var(--accent-terracotta) !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px var(--accent-terracotta-glow);
+}
+
+.btn-terracotta:hover {
+  background-color: var(--accent-terracotta-hover) !important;
+  border-color: var(--accent-terracotta-hover) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(217, 119, 54, 0.45);
+}
+
+.btn-glass {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-glass);
+  color: var(--text-cream-main);
+  backdrop-filter: blur(8px);
+  transition: var(--transition-smooth);
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--border-glass-hover);
+  color: var(--text-cream-light);
+  transform: translateY(-1px);
+}
+
+/* User Dropdown Button */
+.user-dropdown-btn-custom {
+  border: 1px solid var(--border-glass) !important;
+  background: rgba(14, 34, 26, 0.7) !important;
+  backdrop-filter: blur(10px);
+  color: var(--text-cream-main) !important;
+  transition: var(--transition-smooth);
+}
+
+.user-dropdown-btn-custom:hover {
+  border-color: var(--border-glass-hover) !important;
+  background: rgba(24, 52, 40, 0.85) !important;
+  box-shadow: var(--shadow-glass);
+}
+
+.user-avatar-custom {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--accent-terracotta), #96421a);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.luxury-dropdown-menu {
+  background: var(--glass-modal) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass) !important;
+  box-shadow: var(--shadow-glass);
+}
+
+.luxury-dropdown-menu .dropdown-item {
+  color: var(--text-cream-main) !important;
+  transition: var(--transition-smooth);
+}
+
+.luxury-dropdown-menu .dropdown-item:hover {
+  background: rgba(217, 119, 54, 0.18) !important;
+  color: var(--text-cream-light) !important;
+}
+
+.dropdown-divider {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ==========================================================================
+   Search Bar - Premium Floating Glass Pill
+   ========================================================================== */
+.search-bar-wrapper {
+  max-width: 480px;
+  width: 100%;
+}
+
+.search-group-luxury {
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-pill);
+  padding: 0.35rem 0.5rem 0.35rem 1.25rem;
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  transition: var(--transition-smooth);
+}
+
+.search-group-luxury:hover,
+.search-group-luxury:focus-within {
+  border-color: var(--border-glass-accent);
+  background: rgba(16, 40, 31, 0.85);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35), 0 0 14px var(--accent-terracotta-glow);
+}
+
+.search-input-luxury {
+  font-size: 0.875rem;
+  color: var(--text-cream-light) !important;
+  padding: 0.3rem 0.6rem;
+  background: transparent !important;
+}
+
+.search-input-luxury::placeholder {
+  color: var(--text-cream-dim);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+.search-btn-luxury {
+  background: linear-gradient(135deg, var(--accent-terracotta), #bb5d1f) !important;
+  border: none;
+  width: 36px;
+  height: 36px;
+  color: #ffffff;
+  padding: 0;
+  transition: var(--transition-smooth);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.search-btn-luxury:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px var(--accent-terracotta-glow);
+}
+
+/* Navbar Mobile Toggle */
+.navbar-toggler {
+  border: 1px solid var(--border-glass) !important;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 0.45rem 0.75rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-cream-light) !important;
+}
+
+.navbar-toggler-icon {
+  filter: invert(0.9) sepia(0.2) saturate(2) hue-rotate(30deg);
+}
+
+/* ==========================================================================
+   Category Filters & Tax Bar
+   ========================================================================== */
+.filters-container-luxury {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.filters-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.filters-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-item-luxury {
+  color: var(--text-cream-dim);
+  opacity: 0.75;
+  transition: var(--transition-smooth);
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid transparent;
+  white-space: nowrap;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.filter-item-luxury:hover {
+  opacity: 1;
+  color: var(--text-cream-light);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-glass);
+  transform: translateY(-2px);
+}
+
+.filter-item-luxury.active {
+  opacity: 1;
+  color: var(--text-cream-light);
+  background: rgba(217, 119, 54, 0.15);
+  border-color: var(--border-glass-accent);
+  box-shadow: 0 4px 12px rgba(217, 119, 54, 0.2);
+}
+
+.filter-item-luxury.active .filter-icon {
+  color: var(--accent-terracotta);
+}
+
+.tax-toggle-luxury {
+  border: 1px solid var(--border-glass);
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.15rem;
+  background: var(--glass-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: var(--transition-smooth);
+  transform: translateY(-6px);
+  align-self: center;
+}
+
+.tax-toggle-luxury:hover {
+  border-color: var(--border-glass-hover);
+  background: rgba(20, 48, 37, 0.75);
+}
+
+.tax-toggle-luxury .form-switch {
+  padding-left: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.tax-toggle-luxury .tax-switch {
+  float: none !important;
+  margin: 0 !important;
+  cursor: pointer;
+  width: 2.35em !important;
+  height: 1.25em !important;
+}
+
+.tax-toggle-luxury label {
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.form-check-input:checked {
+  background-color: var(--accent-terracotta) !important;
+  border-color: var(--accent-terracotta) !important;
+}
+
+/* ==========================================================================
+   Luxury Glass Cards (Listings, Bookings, Forms, Details)
+   ========================================================================== */
+.card,
+.glass-card {
+  background: var(--glass-card) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-glass);
+  transition: var(--transition-smooth);
+  color: var(--text-cream-main);
+}
+
+/* Listing Grid Cards */
+.listing-card-luxury {
+  background: var(--glass-card) !important;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-glass);
+  transition: var(--transition-smooth);
+}
+
+.listing-card-luxury:hover {
+  background: var(--glass-card-hover) !important;
+  border-color: var(--border-glass-hover) !important;
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-card-hover);
+  cursor: pointer;
+}
+
+.card-img-container-luxury {
+  position: relative;
+  aspect-ratio: 1 / 0.95;
+  background-color: #0c1e16;
+  overflow: hidden;
+}
+
+.listing-img-luxury {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.listing-card-luxury:hover .listing-img-luxury {
+  transform: scale(1.06);
+}
+
+/* Category Badge on Card */
+.category-badge-luxury {
+  background: rgba(10, 24, 18, 0.78) !important;
+  backdrop-filter: blur(8px);
+  color: var(--text-cream-light) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.price-tag {
+  color: var(--text-cream-light);
+  font-weight: 700;
+}
+
+.tax-badge {
+  color: var(--accent-amber);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Show Page & Reservation Glass Widget
+   ========================================================================== */
+.show-hero-container {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 1px solid var(--border-glass);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  max-height: 520px;
+  background: #081711;
+}
+
+.show-hero-img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+}
+
+.reservation-card-luxury {
+  background: rgba(13, 33, 25, 0.85) !important;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), 0 0 25px rgba(217, 119, 54, 0.15) !important;
+}
+
+.reservation-date-box {
+  border: 1px solid var(--border-glass);
+  background: var(--glass-input);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.reservation-date-box input,
+.reservation-date-box select {
+  background: transparent !important;
+  color: var(--text-cream-light) !important;
+}
+
+.reservation-date-box input::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+}
+
+.btn-reserve-luxury {
+  background: linear-gradient(135deg, var(--accent-terracotta), #bf5c1a) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: var(--transition-smooth);
+  box-shadow: 0 6px 20px var(--accent-terracotta-glow);
+}
+
+.btn-reserve-luxury:hover {
+  background: linear-gradient(135deg, var(--accent-terracotta-hover), #ab4e11) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(217, 119, 54, 0.45);
+}
+
+/* Host & Review Cards */
+.host-avatar-luxury {
+  background: linear-gradient(135deg, var(--accent-terracotta), #7f3b18);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.review-card-luxury {
+  background: rgba(15, 36, 28, 0.65) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-md) !important;
+  transition: var(--transition-smooth);
+}
+
+.review-card-luxury:hover {
+  background: rgba(22, 50, 39, 0.8) !important;
+  border-color: var(--border-glass-hover) !important;
+  box-shadow: var(--shadow-glass);
+}
+
+/* ==========================================================================
+   Forms, Inputs & Alerts
+   ========================================================================== */
+.form-control,
+.form-select {
+  background: var(--glass-input) !important;
+  border: 1px solid var(--border-glass) !important;
+  color: var(--text-cream-light) !important;
+  transition: var(--transition-smooth);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background: rgba(12, 30, 23, 0.85) !important;
+  border-color: var(--accent-terracotta) !important;
+  box-shadow: 0 0 0 0.25rem var(--accent-terracotta-glow) !important;
+  color: var(--text-cream-light) !important;
+}
+
+.form-control::placeholder {
+  color: var(--text-cream-dim);
+}
+
+.input-group-text {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid var(--border-glass) !important;
+  color: var(--text-cream-main) !important;
+}
+
+.form-range::-webkit-slider-thumb {
+  background: var(--accent-terracotta);
+}
+
+.form-range::-moz-range-thumb {
+  background: var(--accent-terracotta);
+}
+
+/* Alerts */
+.alert-glass-success {
+  background: rgba(20, 56, 38, 0.85) !important;
+  border: 1px solid rgba(82, 196, 126, 0.3) !important;
+  color: #daf5e3 !important;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-glass);
+}
+
+.alert-glass-danger {
+  background: rgba(68, 22, 22, 0.85) !important;
+  border: 1px solid rgba(235, 87, 87, 0.35) !important;
+  color: #fddede !important;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-glass);
+}
+
+.alert-glass-info {
+  background: rgba(14, 38, 30, 0.8) !important;
+  border: 1px solid var(--border-glass) !important;
+  color: var(--text-cream-light) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* ==========================================================================
+   Bookings & Auth Cards
+   ========================================================================== */
+.booking-card-luxury {
+  background: var(--glass-card) !important;
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.booking-card-luxury:hover {
+  background: var(--glass-card-hover) !important;
+  border-color: var(--border-glass-hover) !important;
+  box-shadow: var(--shadow-card-hover);
+}
+
+.auth-card-luxury {
+  background: rgba(12, 30, 23, 0.82) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-xl) !important;
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* ==========================================================================
+   Footer - Modern Airbnb-Inspired Minimal & Spacious Design
+   ========================================================================== */
+footer.stayora-footer {
+  background: rgba(9, 23, 17, 0.78) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
+  margin-top: 5rem;
+  position: relative;
+  z-index: 10;
+}
+
+.footer-logo-icon {
+  font-size: 1.35rem;
+  color: var(--accent-terracotta);
+  filter: drop-shadow(0 2px 8px var(--accent-terracotta-glow));
+}
+
+.footer-brand-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-cream-light);
+  letter-spacing: -0.02em;
+}
+
+.footer-tagline {
+  font-size: 0.925rem;
+  color: var(--text-cream-muted);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.footer-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-cream-light);
+  margin-bottom: 1rem;
+}
+
+.footer-list {
+  margin: 0;
+  padding: 0;
+}
+
+.footer-list li {
+  margin-bottom: 0.65rem;
+}
+
+.footer-nav-link {
+  font-size: 0.9rem;
+  color: var(--text-cream-muted);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  display: inline-block;
+}
+
+.footer-nav-link:hover {
+  color: var(--text-cream-light);
+  transform: translateX(2px);
+}
+
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  opacity: 1;
+}
+
+.footer-legal {
+  font-size: 0.875rem;
+  color: var(--text-cream-muted);
+}
+
+.footer-legal-link {
+  color: var(--text-cream-muted);
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.footer-legal-link:hover {
+  color: var(--text-cream-light);
+}
+
+.footer-dot {
+  opacity: 0.5;
+  color: var(--text-cream-dim);
+}
+
+.footer-locale,
+.footer-currency {
+  color: var(--text-cream-main);
+  font-weight: 500;
+}
+
+.footer-socials .social-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-glass);
+  color: var(--text-cream-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+}
+
+.footer-socials .social-btn:hover {
+  color: var(--text-cream-light);
+  background: rgba(217, 119, 54, 0.2);
+  border-color: var(--accent-terracotta);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--accent-terracotta-glow);
+}
+
+/* ==========================================================================
+   Responsive Utilities & Layout Fixes
+   ========================================================================== */
+@media (max-width: 991.98px) {
+  .reservation-card-luxury {
+    position: static !important;
+    margin-top: 2rem;
+  }
+
+  .search-bar-wrapper {
+    max-width: 100%;
+    margin: 0.75rem 0;
+  }
+
+  .navbar-collapse {
+    background: rgba(9, 23, 17, 0.95);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    margin-top: 0.75rem;
+    backdrop-filter: blur(20px);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .brand-text {
+    font-size: 1.35rem;
+  }
+
+  .show-hero-container,
+  .show-hero-img {
+    max-height: 290px;
+  }
+}
+

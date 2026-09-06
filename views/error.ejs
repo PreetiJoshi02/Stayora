@@ -1,8 +1,21 @@
-<%- layout('/layouts/boilerplate')  %>
+<% layout('/layouts/boilerplate') %>
 
-<div class="row">
-    <div class="alert alert-danger col-6 offset-2 mt-3" role="alert">
-        <p><%= message  %></p>
-   
+<div class="row my-5">
+  <div class="col-12 col-md-8 col-lg-6 mx-auto text-center">
+    <div class="card glass-card p-5 rounded-4">
+      <div class="mb-3">
+        <i class="fa-solid fa-triangle-exclamation" style="font-size: 4rem; color: var(--accent-terracotta);"></i>
+      </div>
+      <h3 class="fw-bold mb-2">Unexpected Detour</h3>
+      <p class="text-muted mb-4"><%= message || "The requested sanctuary could not be found or an unexpected error occurred." %></p>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="/listings" class="btn btn-terracotta rounded-pill px-4 py-2 fw-semibold">
+          <i class="fa-solid fa-house me-1"></i> Back to Retreats
+        </a>
+        <button onclick="history.back()" class="btn btn-glass rounded-pill px-4 py-2">
+          Go Back
+        </button>
+      </div>
     </div>
+  </div>
 </div>

@@ -1,0 +1,49 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row mt-4 mb-5">
+  <div class="col-12 col-sm-8 col-md-6 col-lg-5 mx-auto">
+    <div class="card p-4 p-md-5 auth-card-luxury">
+      <div class="text-center mb-4">
+        <i class="fa-regular fa-compass brand-icon fs-1 mb-2"></i>
+        <h3 class="fw-bold mb-1">Welcome Back</h3>
+        <p class="text-muted small">Log in to manage your retreats and view reservations</p>
+      </div>
+
+      <form action="/login" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="username" class="form-label fw-semibold small" style="color: var(--text-cream-light);">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            class="form-control form-control-lg rounded-3 fs-6"
+            placeholder="Enter your username"
+            required
+          />
+          <div class="invalid-feedback">Please enter your username.</div>
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label fw-semibold small" style="color: var(--text-cream-light);">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-control form-control-lg rounded-3 fs-6"
+            placeholder="Enter your password"
+            required
+          />
+          <div class="invalid-feedback">Please enter your password.</div>
+        </div>
+
+        <button type="submit" class="btn w-100 py-3 rounded-pill fw-bold btn-terracotta">
+          Log In
+        </button>
+      </form>
+
+      <div class="text-center mt-4 pt-3" style="border-top: 1px solid var(--border-glass);">
+        <span class="text-muted small">Don't have an account yet? </span>
+        <a href="/signup" class="fw-semibold small ms-1" style="color: var(--accent-amber);">Sign up</a>
+      </div>
+    </div>
+  </div>
+</div>

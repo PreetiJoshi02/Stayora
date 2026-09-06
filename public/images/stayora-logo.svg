@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 50" width="240" height="50">
+  <g transform="translate(5, 5)">
+    <circle cx="20" cy="20" r="18" fill="none" stroke="#FF5A5F" stroke-width="2.2" />
+    <path fill="#FF5A5F" d="M20 10.5 L9 19.5 L12 19.5 L12 29.5 L17 29.5 L17 22.5 L23 22.5 L23 29.5 L28 29.5 L28 19.5 L31 19.5 Z" />
+  </g>
+  <text x="56" y="32" font-family="'Playfair Display', Georgia, serif" font-size="28" font-weight="600" fill="#F7F3EA" letter-spacing="-0.5">stayora</text>
+</svg>

@@ -1,0 +1,125 @@
+<% layout("/layouts/boilerplate") %>
+<div class="row my-4">
+  <div class="col-12 col-lg-10 mx-auto">
+    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+      <div>
+        <h2 class="fw-bold mb-1"><i class="fa-solid fa-suitcase-rolling me-2" style="color: var(--accent-terracotta);"></i>My Escapes & Bookings</h2>
+        <p class="text-muted small mb-0">View and manage your upcoming nature getaways and retreat reservations</p>
+      </div>
+      <a href="/listings" class="btn btn-glass rounded-pill px-4">
+        <i class="fa-solid fa-compass me-1" style="color: var(--accent-amber);"></i> Explore More Stays
+      </a>
+    </div>
+
+    <% if (!bookings || bookings.length === 0) { %>
+      <!-- Empty State -->
+      <div class="text-center py-5 my-5 glass-card rounded-4 p-5">
+        <div class="mb-3">
+          <i class="fa-solid fa-plane-departure" style="font-size: 4rem; color: var(--accent-amber); opacity: 0.85;"></i>
+        </div>
+        <h4 class="fw-bold mb-2">No journeys booked yet</h4>
+        <p class="text-muted mx-auto mb-4" style="max-width: 450px;">
+          Time to step away into the wild and start planning your next great adventure. Discover secluded villas, treehouses, and mountain lodges.
+        </p>
+        <div>
+          <a href="/listings" class="btn btn-terracotta rounded-pill px-5 py-2 fw-semibold">
+            Browse Retreats
+          </a>
+        </div>
+      </div>
+    <% } else { %>
+      <!-- Bookings List -->
+      <div class="row g-4">
+        <% for (let b of bookings) { %>
+          <div class="col-12">
+            <div class="card border-0 booking-card-luxury">
+              <div class="row g-0">
+                <div class="col-md-4 col-lg-3 position-relative" style="min-height: 190px;">
+                  <img
+                    src="<%= b.listing ? b.listing.image.url : 'https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b' %>"
+                    class="img-fluid h-100 w-100 object-fit-cover"
+                    alt="<%= b.listing ? b.listing.title : 'Listing Image' %>"
+                    style="min-height: 190px;"
+                  />
+                  <% if (b.status === 'confirmed') { %>
+                    <span class="badge category-badge-luxury position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill" style="background: rgba(14, 46, 32, 0.85) !important; color: #84f0b2 !important;">
+                      <i class="fa-solid fa-circle-check me-1"></i> Confirmed
+                    </span>
+                  <% } else { %>
+                    <span class="badge category-badge-luxury position-absolute top-0 start-0 m-3 px-3 py-2 rounded-pill" style="background: rgba(46, 20, 20, 0.85) !important; color: #f08484 !important;">
+                      <i class="fa-solid fa-ban me-1"></i> Cancelled
+                    </span>
+                  <% } %>
+                </div>
+
+                <div class="col-md-8 col-lg-9 p-4 d-flex flex-column justify-content-between">
+                  <div>
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+                      <h4 class="fw-bold mb-0">
+                        <% if (b.listing) { %>
+                          <a href="/listings/<%= b.listing._id %>" class="text-decoration-none" style="color: var(--text-cream-light);">
+                            <%= b.listing.title %>
+                          </a>
+                        <% } else { %>
+                          <span class="text-muted">Property unavailable</span>
+                        <% } %>
+                      </h4>
+                      <div class="fs-5 fw-bold" style="color: var(--accent-amber);">
+                        ₹<%= b.totalPrice.toLocaleString("en-IN") %>
+                        <span class="text-muted fs-6 fw-normal">total</span>
+                      </div>
+                    </div>
+
+                    <p class="text-muted small mb-3">
+                      <i class="fa-solid fa-location-dot me-1" style="color: var(--accent-terracotta);"></i>
+                      <%= b.listing ? b.listing.location + ', ' + b.listing.country : 'Location' %>
+                    </p>
+
+                    <div class="row g-2 mb-3 rounded-3 p-3 small" style="background: var(--glass-input); border: 1px solid var(--border-glass);">
+                      <div class="col-6 col-md-3">
+                        <strong class="d-block text-muted">Check-in:</strong>
+                        <span style="color: var(--text-cream-light);"><%= new Date(b.checkIn).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" }) %></span>
+                      </div>
+                      <div class="col-6 col-md-3">
+                        <strong class="d-block text-muted">Check-out:</strong>
+                        <span style="color: var(--text-cream-light);"><%= new Date(b.checkOut).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" }) %></span>
+                      </div>
+                      <div class="col-6 col-md-3">
+                        <strong class="d-block text-muted">Duration:</strong>
+                        <span style="color: var(--text-cream-light);"><%= b.totalNights %> night<%= b.totalNights > 1 ? 's' : '' %></span>
+                      </div>
+                      <div class="col-6 col-md-3">
+                        <strong class="d-block text-muted">Guests:</strong>
+                        <span style="color: var(--text-cream-light);"><%= b.guests %> guest<%= b.guests > 1 ? 's' : '' %></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 pt-2" style="border-top: 1px solid var(--border-glass);">
+                    <span class="text-muted small">
+                      Booked on <%= new Date(b.createdAt).toLocaleDateString("en-IN", { month: "long", day: "numeric", year: "numeric" }) %>
+                    </span>
+                    <div class="d-flex gap-2">
+                      <% if (b.listing) { %>
+                        <a href="/listings/<%= b.listing._id %>" class="btn btn-glass btn-sm rounded-pill px-3">
+                          View Listing
+                        </a>
+                      <% } %>
+                      <% if (b.status === 'confirmed') { %>
+                        <form action="/bookings/<%= b._id %>/cancel" method="POST" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                          <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3">
+                            Cancel Booking
+                          </button>
+                        </form>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      </div>
+    <% } %>
+  </div>
+</div>

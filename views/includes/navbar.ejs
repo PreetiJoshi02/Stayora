@@ -1,15 +1,61 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" ></button>
-      
+<nav class="navbar navbar-expand-lg luxury-navbar sticky-top">
+  <div class="container-fluid px-lg-4 px-3">
+    <!-- Brand Logo -->
+    <a class="navbar-brand d-inline-flex align-items-center gap-2 text-decoration-none" href="/listings">
+      <span class="brand-logo-badge">
+        <i class="fa-solid fa-house-chimney brand-home-icon"></i>
+      </span>
+      <span class="brand-text-serif">stayora</span>
+    </a>
+
+    <!-- Mobile Toggler -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link " aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/listings">All listings</a>
-        <a class="nav-link" href="/listings/new">Add new listings</a>
-        
+
+    <!-- Nav Content -->
+    <div class="collapse navbar-collapse mt-3 mt-lg-0" id="navbarContent">
+      <!-- Search Bar -->
+      <form class="d-flex mx-auto search-bar-wrapper my-2 my-lg-0" action="/listings" method="GET" role="search">
+        <div class="input-group search-group-luxury w-100 align-items-center">
+          <input class="form-control border-0 shadow-none search-input-luxury" type="search" name="q" placeholder="Anywhere  •  Any week  •  Add guests" aria-label="Search">
+          <button class="btn search-btn-luxury rounded-circle d-flex align-items-center justify-content-center ms-1 flex-shrink-0" type="submit">
+            <i class="fa-solid fa-magnifying-glass fs-6"></i>
+          </button>
+        </div>
+      </form>
+
+      <!-- Right Navigation / Auth -->
+      <div class="navbar-nav align-items-lg-center gap-2 ms-auto pt-2 pt-lg-0">
+        <a class="nav-link nav-link-custom host-link-custom fw-semibold px-3" href="/listings/new">
+          <i class="fa-solid fa-plus me-1" style="color: var(--accent-amber);"></i> Become a host
+        </a>
+
+        <% if (currUser) { %>
+          <a class="nav-link nav-link-custom fw-medium px-3" href="/bookings">
+            <i class="fa-solid fa-suitcase-rolling me-1" style="color: var(--accent-amber);"></i> My Bookings
+          </a>
+
+          <div class="nav-item dropdown ms-lg-1">
+            <button class="btn user-dropdown-btn-custom rounded-pill d-flex align-items-center gap-2 px-3 py-1 dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-bars fs-6" style="color: var(--text-cream-muted);"></i>
+              <div class="user-avatar-custom rounded-circle d-flex align-items-center justify-content-center">
+                <%= currUser.username.charAt(0).toUpperCase() %>
+              </div>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end luxury-dropdown-menu rounded-4 mt-2 p-2 border-0">
+              <li class="px-3 py-2 text-muted small">Signed in as <br><strong style="color: var(--text-cream-light);"><%= currUser.username %></strong></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2 rounded-2" href="/bookings"><i class="fa-solid fa-suitcase-rolling me-2" style="color: var(--accent-amber);"></i>My Bookings</a></li>
+              <li><a class="dropdown-item py-2 rounded-2" href="/listings/new"><i class="fa-solid fa-house-chimney-medical me-2" style="color: var(--accent-terracotta);"></i>Create Listing</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item py-2 rounded-2 fw-semibold" style="color: #ff7b7b !important;" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket me-2"></i>Log out</a></li>
+            </ul>
+          </div>
+        <% } else { %>
+          <a class="nav-link nav-link-custom fw-semibold px-3" href="/login">Log in</a>
+          <a class="btn btn-terracotta rounded-pill px-4 fw-semibold ms-lg-1" href="/signup">Sign up</a>
+        <% } %>
       </div>
     </div>
   </div>
