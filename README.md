@@ -1,4 +1,4 @@
-﻿# Wanderlust 🌍✈️
+﻿# Stayora 🌍✈️
 
 > A modern, responsive, full-stack Airbnb-inspired property listing and booking web platform built with Node.js, Express, MongoDB, EJS, and Bootstrap 5.
 
@@ -12,7 +12,7 @@
 
 ## 📖 Overview
 
-**Wanderlust** is a production-grade property exploration, listing, and reservation platform designed to mirror real-world hospitality marketplaces. Users can browse stays worldwide, filter by travel categories, search destinations, make reservations with automated price calculation, submit reviews, and host their own spaces with strict owner-based authorization.
+**Stayora** is a production-grade property exploration, listing, and reservation platform designed to mirror real-world hospitality marketplaces. Users can browse stays worldwide, filter by travel categories, search destinations, make reservations with automated price calculation, submit reviews, and host their own spaces with strict owner-based authorization.
 
 ---
 
@@ -73,7 +73,7 @@
 ## 📂 Project Architecture
 
 ```
-Wanderlust/
+Stayora/
 ├── controllers/          # Business logic handlers (MVC)
 │   ├── listings.js       # Listing CRUD & query filters
 │   ├── reviews.js        # Review creation & deletion
@@ -120,8 +120,8 @@ Wanderlust/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/PreetiJoshi02/Wanderlust.git
-cd Wanderlust
+git clone https://github.com/PreetiJoshi02/Stayora.git
+cd Stayora
 ```
 
 ### 2. Install Dependencies
